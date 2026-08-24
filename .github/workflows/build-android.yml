@@ -1,0 +1,72 @@
+name: Construire APK Android
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Récupérer le projet
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Installer les dépendances
+        run: npm install
+
+      - name: Créer le projet Android
+        run: npx cap add android
+
+      - name: Générer l’icône Android
+        run: |
+          mkdir -p assets
+          cp web/icon-512.png assets/icon-only.png
+          npx capacitor-assets generate --android
+
+      - name: Synchroniser l’application v6
+        run: npx cap sync android
+
+      - name: Compiler l’APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Nommer le fichier final
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk Boucherie-HACCP-v6.0.apk
+
+      - name: Conserver l’APK comme artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Boucherie-HACCP-v6.0
+          path: Boucherie-HACCP-v6.0.apk
+          retention-days: 90
+
+      - name: Publier la version v6.0
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v6.0
+          name: Boucherie HACCP v6.0
+          body: |
+            APK Android personnel de Boucherie HACCP v6.0 COMPLETE.
+
+            Téléchargez `Boucherie-HACCP-v6.0.apk`, puis autorisez l’installation depuis votre navigateur ou gestionnaire de fichiers Android.
+          files: Boucherie-HACCP-v6.0.apk

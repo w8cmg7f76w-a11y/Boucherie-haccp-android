@@ -1,0 +1,24 @@
+BOUCHERIE HACCP — VERSION 6.0
+
+MISE À JOUR CLOUDFLARE PAGES
+1. Décompressez ce ZIP.
+2. Dans Cloudflare > Workers & Pages > boucherie-haccp, cliquez sur Create deployment.
+3. Déposez le DOSSIER décompressé complet (pas le ZIP).
+4. Validez le déploiement.
+5. Sur l’iPhone, fermez puis rouvrez l’application. Si nécessaire, rechargez une fois la page Safari.
+
+IMPORTANT
+- Les données HACCP restent sur l’appareil dans le stockage local du navigateur.
+- Exportez une sauvegarde complète chaque semaine depuis Réglages.
+- Avant une mise à jour importante, exportez toujours cette sauvegarde.
+- Les seuils et procédures doivent correspondre à votre PMS et à vos obligations applicables.
+
+NOUVEAUTÉS PRINCIPALES
+- Tournée guidée, compteur des contrôles restants et vue responsable.
+- Nettoyages dus uniquement, validation groupée, protocoles modifiables et corbeille.
+- Formats d’étiquettes, quantité restante, réimpression et clôture groupée des DLC.
+- Réceptions favorites, habitudes fournisseur et code-barres.
+- Refroidissement/décongélation avec préréglages, compte à rebours, photos et points intermédiaires.
+- Rappel de sauvegarde, heure de clôture et contrôle d’intégrité locale.
+
+Cette application est un outil de tenue des enregistrements. Elle ne remplace pas la validation de votre PMS par un professionnel compétent.
